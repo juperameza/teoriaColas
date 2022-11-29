@@ -70,24 +70,28 @@ function answNoArrival() {
   document.getElementById("firstQuestion").style.display = "none";
   document.getElementById("promedioLessArrival").style.display = "block";
 }
-let auxiliar = 1;
+function answNoService() {
+  document.getElementById("secondQuestion").style.display = "none";
+  document.getElementById("promedioLessService").style.display = "block";
+}
+let auxiliarArrival = 1;
 function addArrival() {
-  let html = `<div class="form-floating d-flex" id="arrival${auxiliar}">
+  let html = `<div class="form-floating d-flex" id="arrival${auxiliarArrival}">
  <input
    type="number"
-   id="tasaLlegadas${auxiliar}"
+   id="tasaLlegadas${auxiliarArrival}"
    class="form-control w-50"
    placeholder="12"
  />
- <label for="tasaLlegadas{"> ${auxiliar} dato</label>
+ <label for="tasaLlegadas{"> ${auxiliarArrival} dato</label>
  <button onclick="addArrival()">➕</button>
  <button onclick="deleteArrival()">➖</button>
 </div>`;
   document.getElementById("promedioLessArrival").innerHTML += html;
-  auxiliar++;
+  auxiliarArrival++;
 }
 function deleteArrival() {
-  console.log(auxiliar);
-  document.getElementById(`arrival${auxiliar - 1}`).remove();
-  auxiliar--;
+  console.log(auxiliarArrival);
+  document.getElementById(`arrival${auxiliarArrival - 1}`).remove();
+  auxiliarArrival--;
 }
