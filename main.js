@@ -1,6 +1,7 @@
 function calculateOneOnOne() {
-  let a = document.getElementById("tasaLlegadas").value;
-  let s = document.getElementById("tasaServicios").value;
+  let a = Number(document.getElementById("tasaLlegadas").value);
+  let s = Number(document.getElementById("tasaServicios").value);
+  console.log(typeof a);
   if (!validation(a, s)) {
     return;
   }
@@ -147,18 +148,21 @@ function deleteService() {
 }
 function calcular() {
   if (serviceFlag && arrivalFlag) {
-    console.log("ambos");
+    calculateOneOnOne();
+    return;
   }
   if (!arrivalFlag) {
-    let a = document.getElementById("tasaLlegadasLess").value;
+    let a = Number(document.getElementById("tasaLlegadasLess").value);
+    console.log(a);
     for (let i = 1; i < auxiliarArrival; i++) {
       a += Number(document.getElementById(`tasaLlegadasLess${i}`).value);
     }
     a = a / auxiliarArrival;
+    console.log(a);
     document.getElementById("tasaLlegadas").value = a;
   }
   if (!serviceFlag) {
-    let s = document.getElementById("tasaServiciosLess").value;
+    let s = Number(document.getElementById("tasaServiciosLess").value);
     for (let i = 1; i < auxiliarService; i++) {
       s += Number(document.getElementById(`tasaServicioLess${i}`).value);
     }
