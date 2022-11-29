@@ -22,26 +22,8 @@
       </button>
     </div>
 
-    <div id="secondQuestion">
-      Tienes el promedio de llegada?
-      <button id="serviciosPregunta" name="accept" onclick="answYesServices()">
-        ✔️
-      </button>
-      <button id="serviciosPregunta" name="accept" onclick="answNoService()">
-        ❌
-      </button>
-    </div>
-    <!-- <div id="secondQuestion">
-      Tienes el promedio de llegada?
-      <input
-        type="checkbox"
-        id="llegadaPregunta"
-        name="accept"
-        onclick="services()"
-      />
-    </div> -->
-
     <section id="promedioArrival">
+      <h2>Tasa de promedio de llegadas</h2>
       <div class="form-floating">
         <input
           type="number"
@@ -51,16 +33,34 @@
         />
         <label for="tasaLlegadas"> Tasa promedio de llegadas</label>
       </div>
-
-      <!-- <button
-        value="Calcular"
-        onclick="calculateOneOnOne()"
-        class="btn btn-primary"
-      /> -->
-      <div id="result"></div>
     </section>
 
+    <section id="promedioLessArrival">
+      <h2>Datos de llegada de clientes</h2>
+      <div class="form-floating d-flex">
+        <input
+          type="number"
+          id="tasaLlegadasLess"
+          class="form-control w-50"
+          placeholder="12"
+        />
+        <label for="tasaLlegadas"> Primer dato</label>
+        <button onclick="addArrival()">➕</button>
+      </div>
+    </section>
+
+    <div id="secondQuestion">
+      Tienes el promedio de servicio?
+      <button id="serviciosPregunta" name="accept" onclick="answYesServices()">
+        ✔️
+      </button>
+      <button id="serviciosPregunta" name="accept" onclick="answNoService()">
+        ❌
+      </button>
+    </div>
+
     <section id="promedioService" class="mt-2">
+      <h2>Tasa de promedio de servicios</h2>
       <div class="form-floating">
         <input
           type="number"
@@ -76,20 +76,24 @@
         onclick="calculateOneOnOne()"
         class="btn btn-primary"
       /> -->
-      <div id="result"></div>
     </section>
-    <section id="promedioLessArrival">
+
+    <section id="promedioLessService">
+      <h2>Datos de els servicio</h2>
       <div class="form-floating d-flex">
         <input
           type="number"
-          id="tasaLlegadas"
+          id="tasaServiciosLess"
           class="form-control w-50"
           placeholder="12"
         />
         <label for="tasaLlegadas"> Primer dato</label>
-        <button onclick="addArrival()">➕</button>
+        <button onclick="addService()">➕</button>
       </div>
     </section>
+    <button class="btn btn-primary" onclick="calcular()">Calcular</button>
+    <div id="result"></div>
+
     <!-- <section>
       <h2>Simulación</h2>
       <form>

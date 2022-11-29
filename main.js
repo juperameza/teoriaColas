@@ -1,12 +1,7 @@
 function calculateOneOnOne() {
   let a = document.getElementById("tasaLlegadas").value;
-  let s = document.getElementById("tasaServicio").value;
-  if (a > s) {
-    Swal.fire({
-      title:
-        "La tasa de promedio de llegadas no puede ser mayor que la tasa de promedio de servicio",
-      icon: "error",
-    });
+  let s = document.getElementById("tasaServicios").value;
+  if (!validation(a, s)) {
     return;
   }
   let resultado = document.getElementById("result");
@@ -45,6 +40,32 @@ function calculateOneOnOne() {
     resultado.innerHTML += `<div id="${property}">${text} ${results[property]}</div>`;
   }
 }
+function validation(a, s) {
+  if (a == "" || s == "") {
+    Swal.fire({
+      icon: "error",
+      title: "Los campos no pueden estar vacios",
+    });
+    return false;
+  }
+  if (a >= s) {
+    Swal.fire({
+      title:
+        "La tasa de promedio de llegadas no puede ser mayor o igual que la tasa de promedio de servicio",
+      icon: "error",
+    });
+    return false;
+  }
+  if (a <= 0 || s <= 0) {
+    Swal.fire({
+      title: "Las tasas no pueden ser negativas o cero",
+      icon: "error",
+    });
+    return false;
+  }
+  return true;
+}
+
 function question() {
   Swal.fire({
     title: "Tienes los promedios de los datos?",
@@ -61,10 +82,12 @@ function question() {
     }
   });
 }
-
+let arrivalFlag = false;
+let serviceFlag = false;
 function answYesArrival() {
   document.getElementById("firstQuestion").style.display = "none";
   document.getElementById("promedioArrival").style.display = "block";
+  arrivalFlag = true;
 }
 function answNoArrival() {
   document.getElementById("firstQuestion").style.display = "none";
@@ -73,6 +96,7 @@ function answNoArrival() {
 function answYesServices() {
   document.getElementById("secondQuestion").style.display = "none";
   document.getElementById("promedioService").style.display = "block";
+  serviceFlag = true;
 }
 function answNoService() {
   document.getElementById("secondQuestion").style.display = "none";
@@ -83,7 +107,7 @@ function addArrival() {
   let html = `<div class="form-floating d-flex" id="arrival${auxiliarArrival}">
  <input
    type="number"
-   id="tasaLlegadas${auxiliarArrival}"
+   id="tasaLlegadasLess${auxiliarArrival}"
    class="form-control w-50"
    placeholder="12"
  />
@@ -98,4 +122,48 @@ function deleteArrival() {
   console.log(auxiliarArrival);
   document.getElementById(`arrival${auxiliarArrival - 1}`).remove();
   auxiliarArrival--;
+}
+let auxiliarService = 1;
+function addService() {
+  let html = `<div class="form-floating d-flex" id="service${auxiliarService}">
+ <input
+   type="number"
+   id="tasaServicioLess${auxiliarService}"
+   class="form-control w-50"
+   placeholder="12"
+ />
+ <label for="tasaServicio${auxiliarService}"> ${auxiliarService} dato</label>
+ <button onclick="addService()">➕</button>
+ <button onclick="deleteService()">➖</button>
+</div>`;
+  document.getElementById("promedioLessService").innerHTML += html;
+  auxiliarService++;
+}
+
+function deleteService() {
+  console.log(auxiliarService);
+  document.getElementById(`service${auxiliarService - 1}`).remove();
+  auxiliarService--;
+}
+function calcular() {
+  if (serviceFlag && arrivalFlag) {
+    console.log("ambos");
+  }
+  if (!arrivalFlag) {
+    let a = document.getElementById("tasaLlegadasLess").value;
+    for (let i = 1; i < auxiliarArrival; i++) {
+      a += Number(document.getElementById(`tasaLlegadasLess${i}`).value);
+    }
+    a = a / auxiliarArrival;
+    document.getElementById("tasaLlegadas").value = a;
+  }
+  if (!serviceFlag) {
+    let s = document.getElementById("tasaServiciosLess").value;
+    for (let i = 1; i < auxiliarService; i++) {
+      s += Number(document.getElementById(`tasaServicioLess${i}`).value);
+    }
+    s = s / auxiliarService;
+    document.getElementById("tasaServicios").value = s;
+  }
+  calculateOneOnOne();
 }
