@@ -1,8 +1,11 @@
+//Funcion que calcula el modelo uno a uno probabilista basado en los datos ingresados ya sea mediante promedio o ingreso de datos
 function calculateOneOnOne() {
   let a = Number(document.getElementById("tasaLlegadas").value);
   let s = Number(document.getElementById("tasaServicios").value);
   console.log(typeof a);
+  //Funcion  que valida que los datos ingresados sean correctos
   if (!validation(a, s)) {
+    //Si no son correctos se muestra un mensaje de error y se termina la ejecucion de la funcion
     return;
   }
   let resultado = document.getElementById("result");
@@ -41,6 +44,7 @@ function calculateOneOnOne() {
     resultado.innerHTML += `<div id="${property}">${text} ${results[property]}</div>`;
   }
 }
+//Funcion que valida que los datos ingresados sean correctos
 function validation(a, s) {
   if (a == "" || s == "") {
     Swal.fire({
@@ -66,25 +70,10 @@ function validation(a, s) {
   }
   return true;
 }
-
-function question() {
-  Swal.fire({
-    title: "Tienes los promedios de los datos?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      document.getElementById("promedio").style.display = "block";
-    } else {
-    }
-  });
-}
+//Generamos unas banderas que nos ayudaran a saber si el usuario ingreso los datos por promedio o por ingreso de datos
 let arrivalFlag = false;
 let serviceFlag = false;
+//Funciones que ayudan para manejar la respuesta del usuario acerca de el promedio o datos, las cuales habilitan los campos que deben ser visibles en cada caso
 function answYesArrival() {
   document.getElementById("firstQuestion").style.display = "none";
   document.getElementById("promedioArrival").style.display = "block";
@@ -104,6 +93,8 @@ function answNoService() {
   document.getElementById("promedioLessService").style.display = "block";
 }
 let auxiliarArrival = 1;
+//Si el usuario elegio ingresar los datos manualmente se ejecuta esta funcion la cual genera un bloque de html similar al original en el oneOne.html
+//Pero el usuario puede seguir agregando mas campos conforme el los necesite
 function addArrival() {
   let html = `<div class="form-floating d-flex" id="arrival${auxiliarArrival}">
  <input

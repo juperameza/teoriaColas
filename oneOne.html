@@ -11,7 +11,7 @@
   </head>
   <body>
     <h2>1-1 Probabilista</h2>
-
+    <!-- Pregutnandole al usuario si tiene promedios de los datos de llegada -->
     <div id="firstQuestion">
       Tienes el promedio de llegada?
       <button id="llegadaPregunta" name="accept" onclick="answYesArrival()">
@@ -21,7 +21,7 @@
         ❌
       </button>
     </div>
-
+    <!-- Si el usuario dice que si, se le pide que ingrese el promedio de llegada -->
     <section id="promedioArrival">
       <h2>Tasa de promedio de llegadas</h2>
       <div class="form-floating">
@@ -34,7 +34,7 @@
         <label for="tasaLlegadas"> Tasa promedio de llegadas</label>
       </div>
     </section>
-
+    <!-- Si el usuario dice que no, se le pide que ingrese los datos de llegada -->
     <section id="promedioLessArrival">
       <h2>Datos de llegada de clientes</h2>
       <div class="form-floating d-flex">
@@ -48,7 +48,7 @@
         <button onclick="addArrival()">➕</button>
       </div>
     </section>
-
+    <!-- Se le pregunta al usuario si tiene los promedios de el servicio  -->
     <div id="secondQuestion">
       Tienes el promedio de servicio?
       <button id="serviciosPregunta" name="accept" onclick="answYesServices()">
@@ -58,7 +58,7 @@
         ❌
       </button>
     </div>
-
+    <!-- Si el usuario presiona que si se le pedira el promedio -->
     <section id="promedioService" class="mt-2">
       <h2>Tasa de promedio de servicios</h2>
       <div class="form-floating">
@@ -70,14 +70,8 @@
         />
         <label for="tasaServicios"> Tasa promedio de servicios</label>
       </div>
-
-      <!-- <button
-        value="Calcular"
-        onclick="calculateOneOnOne()"
-        class="btn btn-primary"
-      /> -->
     </section>
-
+    <!-- Lo mismo que con el promedio de llegada, si el usuario dice que no, se le pedira que ingrese los datos de servicio -->
     <section id="promedioLessService">
       <h2>Datos de els servicio</h2>
       <div class="form-floating d-flex">
@@ -91,21 +85,10 @@
         <button onclick="addService()">➕</button>
       </div>
     </section>
+    <!-- boton que llama a calcular -->
     <button class="btn btn-primary" onclick="calcular()">Calcular</button>
     <div id="result"></div>
 
-    <!-- <section>
-      <h2>Simulación</h2>
-      <form>
-        <label for="lambda">Lambda</label>
-        <input type="number" id="lambda" name="lambda" />
-        <label for="mu">Mu</label>
-        <input type="number" id="mu" name="mu" />
-        <label for="clients">Clientes</label>
-        <input type="number" id="clients" name="clients" />
-        <button type="button" onclick="simulate()">Simular</button>
-      </form>
-    </section> -->
     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
