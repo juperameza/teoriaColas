@@ -1,4 +1,7 @@
-#promedio {
+#promedioArrival {
+  display: none;
+}
+#promedioLessArrival {
   display: none;
 }
 /* #lq {
