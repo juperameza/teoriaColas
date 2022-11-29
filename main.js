@@ -70,6 +70,10 @@ function answNoArrival() {
   document.getElementById("firstQuestion").style.display = "none";
   document.getElementById("promedioLessArrival").style.display = "block";
 }
+function answYesServices() {
+  document.getElementById("secondQuestion").style.display = "none";
+  document.getElementById("promedioService").style.display = "block";
+}
 function answNoService() {
   document.getElementById("secondQuestion").style.display = "none";
   document.getElementById("promedioLessService").style.display = "block";

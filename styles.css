@@ -4,6 +4,9 @@
 #promedioLessArrival {
   display: none;
 }
+#promedioService {
+  display: none;
+}
 /* #lq {
   background-color: red;
 }
